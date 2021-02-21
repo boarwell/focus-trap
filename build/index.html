@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module">
+      import { init } from "./js/main.js";
+      (() => {
+        const root = document.querySelector("#root");
+        if (root == null) {
+          console.error("no #root");
+          return;
+        }
+
+        const { trap, release } = init(root);
+        const activateButton = document.querySelector("#activate");
+        const deactivateButton = document.querySelector("#deactivate");
+
+        if (activateButton == null || deactivateButton == null) {
+          console.error("either #activate or #deactivate is missing.");
+          return;
+        }
+
+        activateButton.addEventListener("click", trap);
+        deactivateButton.addEventListener("click", release);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <main>
+      <h1>A Study of Focus Trapping.</h1>
+
+      <section id="root">
+        <h2>Trapped Section</h2>
+
+        <div>
+          <button type="button">button 1</button>
+          <button type="button">button 2</button>
+          <button type="button">button 3</button>
+          <button type="button">button 4</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Not Trapped Section</h2>
+
+        <div>
+          <button type="button">button 1</button>
+          <button type="button">button 2</button>
+          <button type="button">button 3</button>
+          <button type="button">button 4</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Buttons Section</h2>
+
+        <button type="button" id="activate">Activate</button>
+        <button type="button" id="deactivate">Deactivate</button>
+      </section>
+    </main>
+  </body>
+</html>

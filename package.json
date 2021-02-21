@@ -1,0 +1,23 @@
+{
+  "name": "focus-trap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shu7ii/focus-trap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shu7ii/focus-trap/issues"
+  },
+  "homepage": "https://github.com/shu7ii/focus-trap#readme",
+  "devDependencies": {
+    "typescript": "^4.1.5"
+  }
+}
