@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script type="module">
@@ -15,26 +14,48 @@
         }
 
         const { trap, release } = init(root);
-        const activateButton = document.querySelector("#activate");
-        const deactivateButton = document.querySelector("#deactivate");
+        const activateButton = document.querySelector("#trap");
+        const deactivateButton = document.querySelector("#free");
+        const outputArea = document.querySelector("#output");
 
         if (activateButton == null || deactivateButton == null) {
-          console.error("either #activate or #deactivate is missing.");
+          console.error("either #trap or #free is missing.");
           return;
         }
 
-        activateButton.addEventListener("click", trap);
-        deactivateButton.addEventListener("click", release);
+        if (outputArea == null) {
+          console.error("#output is mising.");
+          return;
+        }
+
+        activateButton.addEventListener("click", () => {
+          trap();
+          outputArea.value = "trapping";
+        });
+        deactivateButton.addEventListener("click", () => {
+          release();
+          outputArea.value = "free";
+        });
       })();
     </script>
+
+    <style>
+      .mono {
+        font-family: monospace;
+      }
+    </style>
   </head>
 
   <body>
     <main>
       <h1>A Study of Focus Trapping.</h1>
 
+      <section>
+        <h2>Current State: <output class="mono" id="output">free</output></h2>
+      </section>
+
       <section id="root">
-        <h2>Trapped Section</h2>
+        <h2>Trapping Section</h2>
 
         <div>
           <button type="button">button 1</button>
@@ -42,10 +63,17 @@
           <button type="button">button 3</button>
           <button type="button">button 4</button>
         </div>
+
+        <div>
+          <h3>Controls:</h3>
+
+          <button type="button" id="trap">Trap</button>
+          <button type="button" id="free">Free</button>
+        </div>
       </section>
 
       <section>
-        <h2>Not Trapped Section</h2>
+        <h2>Not Trapping Section</h2>
 
         <div>
           <button type="button">button 1</button>
@@ -53,13 +81,6 @@
           <button type="button">button 3</button>
           <button type="button">button 4</button>
         </div>
-      </section>
-
-      <section>
-        <h2>Buttons Section</h2>
-
-        <button type="button" id="activate">Activate</button>
-        <button type="button" id="deactivate">Deactivate</button>
       </section>
     </main>
   </body>
